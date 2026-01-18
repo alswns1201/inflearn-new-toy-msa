@@ -1,3 +1,13 @@
+# Spirng cloud Gateway
+- `spring-cloud-starter-gateway-server-webflux`
+- spring-cloid-starter-gateway-server-mvc
+- `FilterConfig`를 설정하여 requestHeader , responseHeader 적용하기
+  - yaml 설정을 통해 header 제어
+- `CustomFilter`를 적용하여 Request ,Response 로그 적용하기
+  - webflux 적용시 ServerltHttpRquest 가 아닌 `ServerHttpRequest` , `ServerHttpResponse` 사용
+  <img width="1879" height="374" alt="image" src="https://github.com/user-attachments/assets/cee063c9-5911-4ff6-941c-7fa6e85383fa" />
+
+
 # MSA Eureka 기반 멀티 모듈 프로젝트
 
 Spring Boot + Spring Cloud Netflix Eureka를 활용한  
