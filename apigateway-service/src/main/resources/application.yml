@@ -31,7 +31,12 @@ spring:
               filters:
 #                - AddRequestHeader=f-request, 1st-request-header-by-yaml
 #                - AddResponseHeader=f-response, 1st-response-header-from-yaml
-                - CustomFilter
+                - name: CustomFilter
+                - name: LoggingFilter
+                  args:
+                    baseMessage: Hi, there.
+                    preLogger: true
+                    postLogger: true
 eureka:
   client:
     register-with-eureka: true
