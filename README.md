@@ -6,6 +6,9 @@
 - `CustomFilter`를 적용하여 Request ,Response 로그 적용하기
   - webflux 적용시 ServerltHttpRquest 가 아닌 `ServerHttpRequest` , `ServerHttpResponse` 사용
   <img width="1879" height="374" alt="image" src="https://github.com/user-attachments/assets/cee063c9-5911-4ff6-941c-7fa6e85383fa" />
+- Filter 별 우선순위 `application.yaml` 기준 default-filter 지정fitler(GolbalFilter)-> routes : filters 의 순서 대로 진행.
+<img width="886" height="591" alt="image" src="https://github.com/user-attachments/assets/470692d7-6db6-4cf9-89a9-d30c9acf417d" />
+
 
 
 # MSA Eureka 기반 멀티 모듈 프로젝트
