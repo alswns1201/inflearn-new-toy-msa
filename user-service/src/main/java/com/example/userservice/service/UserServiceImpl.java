@@ -21,9 +21,10 @@ public class UserServiceImpl implements UserService {
 
     BCryptPasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(Environment env, UserRepository userRepository) {
+    public UserServiceImpl(Environment env, UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
         this.env = env;
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override

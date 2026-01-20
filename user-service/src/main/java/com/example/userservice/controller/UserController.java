@@ -7,6 +7,7 @@ import com.example.userservice.vo.Greeting;
 import com.example.userservice.vo.RequestUser;
 import com.example.userservice.vo.ResponseUser;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
@@ -54,7 +55,7 @@ public class UserController {
     }
 
     @PostMapping("/users")
-    public ResponseEntity<ResponseUser> createUser(@RequestBody RequestUser user) {
+    public ResponseEntity<ResponseUser> createUser(@Valid  @RequestBody RequestUser user) {
         ModelMapper mapper = new ModelMapper();
         mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 
