@@ -1,3 +1,8 @@
+# 전체 어플리케이션 개요
+<img width="752" height="372" alt="image" src="https://github.com/user-attachments/assets/80198e14-97c5-4bfa-a333-a3cde87ea29f" />
+
+- `카테고리 서비스` ,`유저서비스` , `상품 서비스` 예시를 기반으로 springCloud msa 와 Kafka 를 통한 서비스 적용해보기.
+
 # Spirng cloud Gateway
 - `spring-cloud-starter-gateway-server-webflux`
 - spring-cloid-starter-gateway-server-mvc
