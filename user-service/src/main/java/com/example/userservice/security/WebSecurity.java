@@ -45,6 +45,8 @@ public class WebSecurity {
             .authorizeHttpRequests(auth -> auth
                     // 특정 경로 허용
                     .requestMatchers("/h2-console/**").permitAll()
+                    .requestMatchers("/actuator/**").permitAll()
+                    .requestMatchers("/health-check/**").permitAll()  // 특정 경로 허용
                     // 특정 ip만 접근 가능.
                     .requestMatchers("/**").access(
                             new WebExpressionAuthorizationManager(  "hasIpAddress('127.0.0.1') or hasIpAddress('::1')")
