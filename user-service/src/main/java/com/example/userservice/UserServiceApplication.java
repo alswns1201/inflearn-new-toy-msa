@@ -32,6 +32,7 @@ public class UserServiceApplication {
 	}
 
 	@Bean
+	@LoadBalanced // 유례가 이름으로 사용.
 	public RestTemplate getRestTemplate() {
 		return new RestTemplate();
 	}
