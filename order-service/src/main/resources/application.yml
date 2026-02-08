@@ -21,8 +21,11 @@ spring:
 
 eureka:
   instance:
-    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
-  client:
+    # 호스트네임 대신 IP 주소를 사용하여 유레카에 등록 (DNS 에러 해결)
+    prefer-ip-address: true
+    # 인스턴스 ID도 IP를 포함하도록 구성 (관리하기 더 편해집니다)
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${spring.application.instance_id:${random.value}}
+    client:
     service-url:
       defaultZone: http://127.0.0.1:8761/eureka
     fetch-registry: true
