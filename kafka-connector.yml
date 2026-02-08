@@ -1,13 +1,33 @@
 version: '3'
 
 services:
+  # 1. 카프카 (포트를 여는 주인공)
+  eloquent_cerf:
+    image: apache/kafka:3.7.0
+    container_name: eloquent_cerf
+    ports:
+      - "9092:9092"
+      - "8083:8083" # <--- 이 설정이 있어야 Postman이 접속 가능합니다!
+    environment:
+      # Kafka 기본 설정 (KRaft 모드 예시)
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_LISTENERS: PLAINTEXT://:9092,CONTROLLER://:9093
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@localhost:9093
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      CLUSTER_ID: 'MkU3OEVBNTcwNTJENDM2Qk'
+
+  # 2. 카프카 커넥트 (카프카 네트워크에 기생)
   kafka-connect:
     image: confluentinc/cp-kafka-connect:7.5.0
     container_name: kafka-connect
-    # 네트워크를 카프카 컨테이너와 공유합니다.
-    network_mode: "container:eloquent_cerf"
+    network_mode: "container:eloquent_cerf" # eloquent_cerf의 포트를 같이 씁니다.
+    depends_on:
+      - eloquent_cerf
     environment:
-      # 네트워크를 공유하므로 이제 localhost로 접속 가능합니다.
       CONNECT_BOOTSTRAP_SERVERS: 'localhost:9092'
       CONNECT_REST_ADVERTISED_HOST_NAME: localhost
       CONNECT_REST_PORT: 8083
