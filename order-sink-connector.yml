@@ -1,0 +1,22 @@
+{
+  "name": "my-mariadb-order-sink-connector",
+  "config": {
+    "connector.class": "io.confluent.connect.jdbc.JdbcSinkConnector",
+    "tasks.max": "1",
+    "topics": "orders",
+    "connection.url": "jdbc:mysql://host.docker.internal:3306/mydb",
+    "connection.user": "spring",
+    "connection.password": "spring123",
+    "auto.create": "true",    
+    "auto.evolve": "true",    
+    "delete.enabled": "false",
+    "insert.mode": "insert",
+    "pk.mode": "none",
+    // "pk.fields": "none",
+    "table.name.format": "orders",
+    "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "key.converter.schemas.enable": "true",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter.schemas.enable": "true"
+  }
+}
