@@ -49,7 +49,7 @@ public class WebSecurity {
                     .requestMatchers("/health-check/**").permitAll()  // 특정 경로 허용
                     // 특정 ip만 접근 가능.
                     .requestMatchers("/**").access(
-                            new WebExpressionAuthorizationManager(  "hasIpAddress('127.0.0.1') or hasIpAddress('::1')")
+                            new WebExpressionAuthorizationManager(  "hasIpAddress('172.26.16.1') or hasIpAddress('::1')")
                     )
                     // 그 외는 인증 필요
                     .anyRequest().authenticated()
