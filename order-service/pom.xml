@@ -93,6 +93,18 @@
             <scope>runtime</scope>
         </dependency>
 
+        <!-- Micrometer Tracing + Brave -->
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-tracing-bridge-brave</artifactId>
+        </dependency>
+
+        <!-- Zipkin 전송 -->
+        <dependency>
+            <groupId>io.zipkin.reporter2</groupId>
+            <artifactId>zipkin-reporter-brave</artifactId>
+        </dependency>
+
     </dependencies>
     <dependencyManagement>
         <dependencies>

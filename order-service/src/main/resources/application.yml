@@ -10,7 +10,7 @@ spring:
       settings:
         web-allow-others: true
       path: /h2-console
-#  datasource:
+    #  datasource:
 #    driver-class-name: org.h2.Driver
 #    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;
 #    username: sa
@@ -19,18 +19,30 @@ spring:
     hibernate:
       ddl-auto: update
 
+management:
+  tracing:
+    enabled: true
+    sampling:
+      probability: 1.0   # 예전 sleuth.sampler.probability 대체
+  zipkin:
+    tracing:
+      enabled: true   #
+      endpoint: http://localhost:9411/api/v2/spans
+
 eureka:
   instance:
     # 호스트네임 대신 IP 주소를 사용하여 유레카에 등록 (DNS 에러 해결)
     prefer-ip-address: true
     # 인스턴스 ID도 IP를 포함하도록 구성 (관리하기 더 편해집니다)
     instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${spring.application.instance_id:${random.value}}
-    client:
+  client:
     service-url:
       defaultZone: http://127.0.0.1:8761/eureka
     fetch-registry: true
     register-with-eureka: true
 
 logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] [traceId=%X{traceId:-}, spanId=%X{spanId:-}] %-5level %logger - %msg%n"
   level:
     org.springframework.security: DEBUG

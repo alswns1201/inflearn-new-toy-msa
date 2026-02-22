@@ -86,6 +86,7 @@ public class UserServiceImpl implements UserService {
 
 //        List<ResponseOrder> orderList = orderServiceClient.getOrders(userId);
 
+        log.info("Before call orders msa");
         CircuitBreaker circuitBreaker
                 = circuitBreakerFactory.create("circuitbreaker");
         List<ResponseOrder>  orderList = circuitBreaker.run(
@@ -93,6 +94,8 @@ public class UserServiceImpl implements UserService {
             orderServiceClient.getOrders(userId),
             throwable ->new ArrayList<>());
         userDto.setOrders(orderList);
+
+        log.info("after call orders msa");
 
         return userDto;
     }
