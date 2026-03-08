@@ -20,6 +20,17 @@ spring:
       ddl-auto: update
 
 management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - refresh
+          - health
+          - beans
+          - info
+          - busrefresh
+          - metrics
+          - prometheus
   tracing:
     enabled: true
     sampling:
@@ -46,3 +57,4 @@ logging:
     console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] [traceId=%X{traceId:-}, spanId=%X{spanId:-}] %-5level %logger - %msg%n"
   level:
     org.springframework.security: DEBUG
+
