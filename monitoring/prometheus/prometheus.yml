@@ -2,17 +2,20 @@ global:
   scrape_interval: 15s
 
 scrape_configs:
+  # 1. user-service 설정
   - job_name: "user-service"
     metrics_path: "/user-service/actuator/prometheus"
     static_configs:
       - targets: ["host.docker.internal:8000"]
-scrape_configs:
+
+  # 2. apigateway-service 설정 (중복된 키 대신 항목으로 추가)
   - job_name: "apigateway-service"
     metrics_path: "/actuator/prometheus"
     static_configs:
       - targets: ["host.docker.internal:8000"]      
-scrape_configs:
+
+  # 3. order-service 설정
   - job_name: "order-service"
     metrics_path: "/order-service/actuator/prometheus"
     static_configs:
-      - targets: ["host.docker.internal:8000"]            
+      - targets: ["host.docker.internal:8000"]
